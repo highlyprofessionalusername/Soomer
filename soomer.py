@@ -14,9 +14,9 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    
-    if message.content.startswith('42069'):
+    if message.content.startswith('42069') and str(message.guild) == "Testing server for cool kids only":
         await message.channel.send('Yeet')
-        print(message.guild)
+        print("this message sent from "+ str(message.guild))
+        print(message)
 
 client.run('$YOURTOKENHERE')
