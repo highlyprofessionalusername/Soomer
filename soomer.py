@@ -8,7 +8,6 @@ c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS emojidata (emoji text, message_used integer, reacc_used integer)''')
 conn.commit()
 
-# logging.basicConfig(Level=logging.WARNING)
 
 client = discord.Client()
 
@@ -22,8 +21,12 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('42069'):
+    if str(message.guild) == 'Cyberdelia' and str(message.channel) == 'devnull':
         print("this message sent from "+ str(message.guild))
-        print()
+        print(message)
+            #await message.channel.send('yeet')
+        await message.delete()
+
+
 
 client.run('$YOURTOKENHERE')
