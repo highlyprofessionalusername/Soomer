@@ -21,9 +21,10 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if str(message.guild) == 'Cyberdelia' and str(message.channel) == 'devnull':
-        print("this message sent from "+ str(message.guild))
-        print(message)
+    print("this message sent from "+ str(message.guild))
+    print(message)
+    if message.channel.id == 773676386228502588:
+        
             #await message.channel.send('yeet')
         await message.delete()
 
