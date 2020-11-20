@@ -1,6 +1,14 @@
+"""
+A Terrible Discord bot
+"""
+import sqlite3
 import discord
-import logging
-# logging.basicConfig(Level=logging.WARNING)
+
+conn = sqlite3.connect('emojilytics.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS emojidata (emoji text, message_used integer, reacc_used integer)''')
+conn.commit()
+
 
 client = discord.Client()
 
@@ -8,24 +16,18 @@ client = discord.Client()
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     for i in range(len(client.guilds)):
-        print(client.guilds[i])
+        print("logged into server " + str(client.guilds[i]))
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
-    
-    if message.content.startswith('42069'):
-        await message.channel.send('Yeet')
-        print(message.guild)
+    print("this message sent from "+ str(message.guild))
+    print(message)
+    print(message.channel.id)
+    if message.channel.id == 773676386228502588: #/dev/null channel ID on cyberdelia
+        await message.delete()
 
 
 
-# class MyClient(discord.Client):
-#     async def on_ready(self):
-#         print('Logged on as {0}!'.format(self.user))
-
-#     async def on_message(self, message):
-#         print('Message from {0.author}: {0.content}'.format(message))
-
-client.run('$YOURTOKENHERE')
+client.run('token')
