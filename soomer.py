@@ -1,7 +1,8 @@
-import discord
-import logging
-import re
+"""
+A Terrible Discord bot
+"""
 import sqlite3
+import discord
 
 conn = sqlite3.connect('emojilytics.db')
 c = conn.cursor()
@@ -23,11 +24,10 @@ async def on_message(message):
         return
     print("this message sent from "+ str(message.guild))
     print(message)
-    if message.channel.id == 773676386228502588:
-        
-            #await message.channel.send('yeet')
+    print(message.channel.id)
+    if message.channel.id == 773676386228502588: #/dev/null channel ID on cyberdelia
         await message.delete()
 
 
 
-client.run('$YOURTOKENHERE')
+client.run('NzM3ODM1MTI3NTU1NzUxOTg4.XyDIgg.5_SDXFAPOanshhPZyOUBqGYLU8o')
